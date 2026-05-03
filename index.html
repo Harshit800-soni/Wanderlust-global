@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Wanderlust Global - Explore 195 countries with AI-powered trip planning, booking, maps and budget itineraries." />
+  <title>Wanderlust Global - Explore Every Country on Earth</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="img/favicon.ico">
+</head>
+
+<body>
+
+  <!-- ════════
+  NAVBAR
+  ═════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__logo">
+      Wander<em>lust</em>
+      <span class="navbar__logo-tag">Global</span>
+    </div>
+
+    <ul class="navbar__links">
+      <li><a href="#explore">Explore</a></li>
+      <li><a href="auth.html?mode=login">My Trips</a></li>
+
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+      <button class="btn btn--ghost btn--sm" onclick="toggleTheme()">
+        <span id="theme-icon">☀️</span>
+        <span id="theme-label">Light</span>
+      </button>
+      <a href="auth.html?mode=login" class="btn btn--outline btn--sm" id="nav-login-btn"
+        style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Login</a>
+      <a href="auth.html?mode=register" class="btn btn--primary btn--sm" id="nav-signup-btn"
+        style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Sign Up</a>
+      <a href="profile.html" class="btn btn--outline btn--sm" id="nav-profile-btn" style="display: none;">Profile</a>
+      <button class="btn btn--outline btn--sm" id="nav-logout-btn" style="display: none;">Logout</button>
+      <button class="navbar__hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="#explore" onclick="toggleMobileMenu()">Explore</a>
+    <a href="auth.html?mode=login" onclick="toggleMobileMenu()">My Trips</a>
+    <a href="about.html" onclick="toggleMobileMenu()">About Us</a>
+    <a href="profile.html" id="mobile-profile-link" style="display:none;" onclick="toggleMobileMenu()">User Profile</a>
+    <a href="auth.html?mode=register" class="btn btn--primary btn--full" id="mobile-signup-btn"
+      style="text-align: center; text-decoration: none; display: flex; justify-content: center; align-items: center;">
+      Sign Up Free
+    </a>
+    <button class="btn btn--primary btn--full" id="mobile-logout-btn" style="display:none; text-align: center;">
+      Logout
+    </button>
+  </nav>
+
+  <!-- ═════
+   HERO
+  ══════════ -->
+  <header class="hero" role="banner">
+    <div class="hero__bg">
+      <!-- Animated gradient orbs -->
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+    </div>
+
+    <!-- Star particles (filled by JS) -->
+    <div class="hero__stars" id="stars" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <div class="hero__eyebrow">
+        🌍 195 Countries · AI-Powered Travel Planner
+      </div>
+
+      <h1 class="hero__title">
+        Travel Anywhere
+        <em class="accent">on Earth</em>
+      </h1>
+
+      <p class="hero__subtitle">
+        From the icy peaks of Antarctica to the Maldives' turquoise lagoons —
+        explore every country, plan smart and travel bold.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="hero__search" role="search">
+        <div class="hero__search-grid">
+          <div class="search-field">
+            <label class="search-field__label" for="hero-q">Where to?</label>
+            <input class="search-field__input" type="text" id="hero-q" placeholder="Country, city or region…"
+              oninput="liveSearch(this.value)" onkeydown="if(event.key==='Enter') doHeroSearch()" autocomplete="off" />
+          </div>
+
+          <div class="search-field">
+            <label class="search-field__label" for="hero-cont">Continent</label>
+            <select class="search-field__input" id="hero-cont" onchange="filterContinent(this.value)">
+              <option value="">All Continents</option>
+              <option>Asia</option>
+              <option>Europe</option>
+              <option>Africa</option>
+              <option>North America</option>
+              <option>South America</option>
+              <option>Oceania</option>
+              <option>Antarctica</option>
+            </select>
+          </div>
+
+          <div class="search-field">
+            <label class="search-field__label" for="hero-bud">Budget / person</label>
+            <select class="search-field__input" id="hero-bud">
+              <option value="">Any Budget</option>
+              <option value="budget">Budget (under $500)</option>
+              <option value="mid">Mid-range ($500-$2,000)</option>
+              <option value="luxury">Luxury ($2,000+)</option>
+            </select>
+          </div>
+
+          <button class="btn btn--primary" onclick="doHeroSearch()">
+            Search ✈
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="hero__stats">
+        <div>
+          <span class="hero__stat-val">195</span>
+          <span class="hero__stat-lbl">Countries</span>
+        </div>
+        <div>
+          <span class="hero__stat-val">7</span>
+          <span class="hero__stat-lbl">Continents</span>
+        </div>
+        <div>
+          <span class="hero__stat-val">50K+</span>
+          <span class="hero__stat-lbl">Travelers</span>
+        </div>
+        <div>
+          <span class="hero__stat-val">AI</span>
+          <span class="hero__stat-lbl">Trip Planner</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════
+   CONTINENT FILTER BAR (sticky)
+  ════════════════════════════════════ -->
+  <div class="filter-bar" id="explore" role="navigation" aria-label="Filter by continent">
+    <button class="filter-bar__btn active" onclick="filterContinent('', this)">🌍 All</button>
+    <button class="filter-bar__btn" onclick="filterContinent('Asia', this)">🌏 Asia</button>
+    <button class="filter-bar__btn" onclick="filterContinent('Europe', this)">🏰 Europe</button>
+    <button class="filter-bar__btn" onclick="filterContinent('Africa', this)">🌿 Africa</button>
+    <button class="filter-bar__btn" onclick="filterContinent('North America', this)">🗽 North America</button>
+    <button class="filter-bar__btn" onclick="filterContinent('South America', this)">🦜 South America</button>
+    <button class="filter-bar__btn" onclick="filterContinent('Oceania', this)">🦘 Oceania</button>
+    <button class="filter-bar__btn" onclick="filterContinent('Antarctica', this)">🧊 Antarctica</button>
+  </div>
+
+  <!-- ══════════════════════════
+  MAIN — DESTINATIONS GRID
+  ═══════════════════════════════ -->
+  <main class="main" role="main">
+    <div class="container">
+
+      <div class="section-header">
+        <div class="section-header__left">
+          <span class="section-header__tag">Explore the World</span>
+          <h2 class="section-header__title" id="all-destinations">All Destinations</h2>
+          <span class="section-header__count" id="count-lbl">
+            Showing all destinations…
+          </span>
+        </div>
+        <select class="sort-select" onchange="sortCountries(this.value)" aria-label="Sort destinations">
+          <option value="name">Sort: A-Z</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="rating">Top Rated First</option>
+        </select>
+      </div>
+
+      <!-- Card grid — populated by app.js -->
+      <div class="card-grid" id="card-grid" role="list"></div>
+
+      <!-- Load more -->
+      <div class="load-more-wrap">
+        <button class="btn btn--outline" id="load-more-btn" onclick="loadMore()" style="display:none">
+          Load More Countries ↓
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══════════
+  FOOTER
+  ═══════════════ -->
+  <footer class="footer" id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo">Wander<em>lust</em> Global</div>
+          <p class="footer__desc">
+            Your AI-powered global travel companion. Explore 195 countries,
+            plan smart itineraries and book your dream trip.
+          </p>
+        </div>
+        <nav>
+          <h5 class="footer__col-title">Popular Destinations</h5>
+          <ul class="footer__col-links">
+              <li><a href="#" onclick="openBooking(COUNTRIES.findIndex(c => c.name === 'Japan')); return false;">Tokyo, Japan</a></li>
+            <li><a href="#" onclick="openBooking(COUNTRIES.findIndex(c => c.name === 'France')); return false;">Paris, France</a></li>
+            <li><a href="#" onclick="openBooking(COUNTRIES.findIndex(c => c.name === 'Indonesia (Bali)')); return false;">Bali, Indonesia</a></li>
+            <li><a href="#" onclick="openBooking(COUNTRIES.findIndex(c => c.name === 'Maldives')); return false;">Maldives</a></li>
+            <li><a href="#" onclick="openBooking(COUNTRIES.findIndex(c => c.name === 'UAE')); return false;">Dubai, UAE</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h5 class="footer__col-title">Company</h5>
+          <ul class="footer__col-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#all-destinations">Destinations</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h5 class="footer__col-title">Support</h5>
+          <ul class="footer__col-links">
+            <li><a href="footer/help-center.html">Help Center</a></li>
+            <li><a href="footer/help-center.html" onclick="localStorage.setItem('hc-goto','privacy')">Privacy Policy</a>
+            </li>
+            <li><a href="mailto:wanderlust@travel.com">wanderlust@travel.com</a></li>
+            <li><a>24/7 Support or "Mon-Fri, 9AM-6PM"</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 Wanderlust Global. All rights reserved.</span>
+        <span>Made with ❤️ for explorers everywhere</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════
+  BOOKING MODAL
+  ═════════════════════ -->
+  <div class="overlay" id="bk-overlay" role="dialog" aria-modal="true" aria-label="Trip Booking"
+    onclick="closeBkOutside(event)">
+    <div class="modal">
+      <!-- Hero image banner -->
+      <div class="modal__hero" id="bk-hero"></div>
+      <button class="modal__close" onclick="closeBooking()" aria-label="Close">✕</button>
+
+      <div class="modal__body">
+        <h2 class="modal__title" id="bk-title">Book Your Trip</h2>
+        <p class="modal__sub" id="bk-sub"></p>
+
+        <!-- Personal info -->
+        <div class="form-group">
+          <label class="form-group__label" for="bk-name">Full Name</label>
+          <input class="form-group__input" type="text" id="bk-name" placeholder="Your full name" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-group__label" for="bk-email">Email</label>
+            <input class="form-group__input" type="email" id="bk-email" placeholder="you@email.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="bk-phone">Phone</label>
+            <input class="form-group__input" type="tel" id="bk-phone" placeholder="+1 234 567 8900" />
+          </div>
+        </div>
+
+        <!-- Calendar date picker -->
+        <div class="form-group">
+          <label class="form-group__label">Travel Dates (select up to 2)</label>
+          <div class="calendar">
+            <div class="calendar__nav">
+              <button class="calendar__nav-btn" onclick="calPrev()" aria-label="Previous month">‹</button>
+              <span class="calendar__month" id="cal-lbl"></span>
+              <button class="calendar__nav-btn" onclick="calNext()" aria-label="Next month">›</button>
+            </div>
+            <div class="calendar__grid" id="cal-grid"></div>
+          </div>
+        </div>
+
+        <!-- Trip options -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-group__label" for="bk-pax">Travellers</label>
+            <select class="form-group__select" id="bk-pax" onchange="calcPrice()">
+              <option>1 person</option>
+              <option>2 people</option>
+              <option>3-5 people</option>
+              <option>6+ people</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="bk-type">Trip Style</label>
+            <select class="form-group__select" id="bk-type">
+              <option>Budget</option>
+              <option>Standard</option>
+              <option>Luxury</option>
+              <option>Adventure</option>
+              <option>Honeymoon</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-group__label" for="bk-nights">Number of Nights</label>
+          <input class="form-group__input" type="number" id="bk-nights" value="7" min="1" max="90"
+            onchange="calcPrice()" />
+        </div>
+        <div class="form-group">
+          <label class="form-group__label" for="bk-notes">Special Requests</label>
+          <textarea class="form-group__textarea" id="bk-notes" rows="2"
+            placeholder="Dietary needs, accessibility, preferences…"></textarea>
+        </div>
+
+        <!-- Price estimate -->
+        <div class="price-panel" id="price-panel"></div>
+
+        <button class="btn btn--primary btn--full" onclick="submitBooking()">
+          Confirm Booking →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal removed to auth.html -->
+
+  <!-- ══════════
+  CHATBOT
+  ═══════════════ -->
+  <button class="chat-fab" id="chat-fab" onclick="toggleChat()" aria-label="Open AI travel assistant">
+    🌍
+  </button>
+
+  <div class="chat-window" id="chat-window" role="dialog" aria-label="AI Travel Assistant">
+    <div class="chat-window__header">
+      <div class="chat-window__header-left">
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <div class="chat-window__name">Wanderlust AI</div>
+          <div class="chat-window__status">● Online — Global Trip Planner</div>
+        </div>
+      </div>
+      <button class="chat-window__close" onclick="toggleChat()" aria-label="Close chat">✕</button>
+    </div>
+
+    <div class="chat-window__messages" id="chat-messages">
+      <div class="chat-msg chat-msg--bot">
+        👋 Namaste! I'm your Wanderlust AI assistant. I know every country on Earth!
+        Ask me for trip plans, visa info, budget advice, best seasons and more. 🌍
+      </div>
+    </div>
+
+    <div class="chat-window__quick">
+      <button class="quick-chip" onclick="quickChip('Best countries for budget travel under $500')">Budget
+        travel</button>
+      <button class="quick-chip" onclick="quickChip('Top Europe destinations to visit')">Europe tips</button>
+      <button class="quick-chip" onclick="quickChip('Best tropical beach destinations worldwide')">Beach
+        holidays</button>
+      <button class="quick-chip" onclick="quickChip('Safest countries for solo travel')">Solo travel</button>
+      <button class="quick-chip" onclick="quickChip('Visa-free countries for Indians')">Visa-free India</button>
+      <button class="quick-chip" onclick="quickChip('Best honeymoon destinations internationally')">Honeymoon</button>
+    </div>
+
+    <div class="chat-window__input-row">
+      <input class="chat-window__input" type="text" id="chat-input" placeholder="Ask about any destination…"
+        onkeydown="if(event.key==='Enter') sendChat()" autocomplete="off" />
+      <button class="chat-send-btn" onclick="sendChat()" aria-label="Send">➤</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════
+TOAST NOTIFICATION
+  ════════════════════════ -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span id="toast-icon"></span>
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- Razorpay SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <!-- App script -->
+  <script src="js/countries.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="auth/firebaseauth.js"></script>
+</body>
+
+</html>

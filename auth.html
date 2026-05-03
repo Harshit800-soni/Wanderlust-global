@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Authentication – Wanderlust Global</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="img/favicon.ico">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .auth-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1rem;
+      position: relative;
+    }
+    .auth-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .auth-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+    }
+    .auth-orb--1 { width: 400px; height: 400px; background: var(--acc); top: -100px; left: -100px; animation: float 10s ease-in-out infinite; }
+    .auth-orb--2 { width: 300px; height: 300px; background: rgba(124, 58, 237, 0.4); bottom: -50px; right: -50px; animation: float 12s ease-in-out infinite reverse; }
+    
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-20px) translateX(20px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    /* Override modal absolute positioning for inline layout */
+    .auth-container .modal.auth-modal {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transform: none; 
+      animation: formEntry 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .auth-container .modal__close {
+      display: none;
+    }
+    .auth-container .modal__body {
+      padding: 0;
+    }
+  </style>
+</head>
+<body class="auth-page">
+
+  <!-- ═══════════════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__logo">
+      <a href="index.html" style="text-decoration:none; color:inherit;">Wander<em>lust</em></a>
+      <span class="navbar__logo-tag">Global</span>
+    </div>
+
+    <ul class="navbar__links">
+      <li><a href="index.html#explore">Explore</a></li>
+      <li><a href="auth.html?mode=login">My Trips</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+      <button class="btn btn--ghost btn--sm" onclick="toggleTheme()">
+        <span id="theme-icon">☀️</span>
+        <span id="theme-label">Light</span>
+      </button>
+      <button class="navbar__hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html#explore" onclick="toggleMobileMenu()">Explore</a>
+    <a href="auth.html?mode=login" onclick="toggleMobileMenu()">My Trips</a>
+    <a href="about.html" onclick="toggleMobileMenu()">About Us</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════
+       AUTH CONTAINER
+  ════════════════════════════════════════════════════ -->
+  <main class="auth-container">
+    <div class="auth-bg">
+      <div class="auth-orb auth-orb--1"></div>
+      <div class="auth-orb auth-orb--2"></div>
+    </div>
+
+    <div class="modal auth-modal">
+      <div class="modal__body">
+        <h2 class="modal__title">Welcome</h2>
+        <p class="modal__sub">Your global adventure awaits</p>
+
+        <div class="tab-bar" role="tablist">
+          <button class="tab-bar__btn active" id="tbtn-login"
+            role="tab" onclick="switchAuthTab('login')">Login</button>
+          <button class="tab-bar__btn" id="tbtn-register"
+            role="tab" onclick="switchAuthTab('register')">Register</button>
+        </div>
+
+        <!-- Login pane -->
+        <div class="tab-pane active" id="atab-login" role="tabpanel">
+          <form id="loginForm">
+            <div class="form-group">
+              <label class="form-group__label" for="loginEmail">Email</label>
+              <input class="form-group__input" type="email" id="loginEmail" placeholder="you@email.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-group__label" for="loginPassword">Password</label>
+              <input class="form-group__input" type="password" id="loginPassword" placeholder="••••••••" />
+            </div>
+            <div style="text-align: right; margin-bottom: 1rem; margin-top: -0.5rem;">
+              <a href="#" id="forgotPasswordBtn" style="color: var(--acc); font-size: 0.9rem; text-decoration: none;">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full" id="loginBtn">
+              Sign In →
+            </button>
+          </form>
+        </div>
+
+        <!-- Register pane -->
+        <div class="tab-pane" id="atab-register" role="tabpanel">
+          <form id="registerForm">
+            <div class="form-group">
+              <label class="form-group__label" for="fName">Full Name</label>
+              <input class="form-group__input" type="text" id="fName" placeholder="Your full name" />
+            </div>
+            <div class="form-group">
+              <label class="form-group__label" for="regEmail">Email</label>
+              <input class="form-group__input" type="email" id="regEmail" placeholder="you@email.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-group__label" for="regPassword">Password</label>
+              <input class="form-group__input" type="password" id="regPassword" placeholder="Create a strong password" />
+            </div>
+            <button type="submit" class="btn btn--primary btn--full" id="submitSignUp">
+              Create Account →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════
+       TOAST NOTIFICATION
+  ════════════════════════════════════════════════════ -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span id="toast-icon"></span>
+    <span id="toast-msg"></span>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script type="module" src="auth/firebaseauth.js"></script>
+</body>
+</html>

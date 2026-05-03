@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Wanderlust Global Help Center – FAQs, Privacy Policy and Support"/>
+  <title>Help Center – Wanderlust Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../css/help-center.css">
+<link rel = "icon" type = "image/png" href = "../img/favicon.ico">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════ -->
+<nav class="navbar">
+  <a href="index.html" class="navbar__logo">
+    Wander<em>lust</em>
+    <span class="navbar__logo-tag">Global</span>
+  </a>
+  <ul class="navbar__links">
+    <li><a href="../index.html">Explore</a></li>
+    <li><a href="../about.html">About Us</a></li>
+    <li><a href="help-center.html" class="active">Help Center</a></li>
+    <li><a href="../index.html#footer">Contact</a></li>
+  </ul>
+  <div class="navbar__actions">
+    <button class="btn btn--ghost btn--sm" onclick="toggleTheme()">
+      <span id="theme-icon">☀️</span>
+      <span id="theme-label">Light</span>
+    </button>
+    <a href="../auth.html?mode=login" class="btn btn--outline btn--sm" id="nav-login-btn" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Login</a>
+    <a href="../auth.html?mode=register" class="btn btn--primary btn--sm" id="nav-signup-btn" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Sign Up</a>
+    <a href="../profile.html" class="btn btn--outline btn--sm" id="nav-profile-btn" style="display: none;">Profile</a>
+    <button class="btn btn--outline btn--sm" id="nav-logout-btn" style="display: none;">Logout</button>
+    <button class="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="../index.html" onclick="toggleMobileMenu()">Explore</a>
+  <a href="../about.html" onclick="toggleMobileMenu()">About Us</a>
+  <a href="help-center.html" onclick="toggleMobileMenu()">Help Center</a>
+  <a href="../profile.html" id="mobile-profile-link" style="display:none;" onclick="toggleMobileMenu()">User Profile</a>
+  <a href="../auth.html?mode=register" class="btn btn--primary" id="mobile-signup-btn" style="border-radius:10px;padding:11px;margin-top:.5rem;text-align:center;text-decoration:none;display:block;">Sign Up Free</a>
+  <button class="btn btn--primary" id="mobile-logout-btn" style="display:none;border-radius:10px;padding:11px;margin-top:.5rem;text-align:center;">Logout</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════════ -->
+<header class="page-hero">
+  <div class="hero-orb hero-orb--1"></div>
+  <div class="hero-orb hero-orb--2"></div>
+  <div class="page-hero__inner">
+    <div class="page-hero__eyebrow"> Help Center</div>
+    <h1 class="page-hero__title">How Can We <em>Help You?</em></h1>
+    <p class="page-hero__sub">Find answers, guides and policies — everything you need to travel smarter with Wanderlust Global.</p>
+    <div class="help-search">
+      <input class="help-search__input" type="text" id="search-input" placeholder="Search for help… e.g. booking, refund, visa…" oninput="liveSearch(this.value)"/>
+      <button class="help-search__btn">🔍</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     QUICK CATEGORY CARDS
+═══════════════════════════════════════════════ -->
+<section class="categories">
+  <div class="container">
+    <div class="cat-grid">
+      <a class="cat-card" onclick="showSection('getting-started')">
+        <div class="cat-icon">🚀</div>
+        <div class="cat-title">Getting Started</div>
+        <div class="cat-count">8 articles</div>
+      </a>
+      <a class="cat-card" onclick="showSection('faq')">
+        <div class="cat-icon">❓</div>
+        <div class="cat-title">FAQs</div>
+        <div class="cat-count">24 questions</div>
+      </a>
+      <a class="cat-card" onclick="showSection('privacy')">
+        <div class="cat-icon">🔒</div>
+        <div class="cat-title">Privacy Policy</div>
+        <div class="cat-count">Last updated Apr 2026</div>
+      </a>
+      <a class="cat-card" onclick="showSection('contact')">
+        <div class="cat-icon">💬</div>
+        <div class="cat-title">Contact Support</div>
+        <div class="cat-count">Avg. reply: 2 hours</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MAIN LAYOUT — SIDE NAV + CONTENT
+═══════════════════════════════════════════════ -->
+<main>
+  <div class="container">
+
+    <!-- Mobile side nav toggle -->
+    <button class="mobile-side-toggle" onclick="document.getElementById('side-nav').classList.toggle('mobile-open')">
+      ☰ Browse Help Topics
+    </button>
+
+    <div class="help-layout">
+
+      <!-- ── SIDE NAVIGATION ── -->
+      <aside class="side-nav" id="side-nav">
+        <div class="side-nav__section">
+          <span class="side-nav__label">Help Topics</span>
+          <button class="side-nav__link active" id="nav-getting-started" onclick="showSection('getting-started')">
+            <span class="nav-dot"></span> Getting Started
+          </button>
+          <button class="side-nav__link" id="nav-faq" onclick="showSection('faq')">
+            <span class="nav-dot"></span> FAQs
+          </button>
+          <button class="side-nav__link" id="nav-contact" onclick="showSection('contact')">
+            <span class="nav-dot"></span> Contact Support
+          </button>
+        </div>
+        <div class="side-nav__divider"></div>
+        <div class="side-nav__section">
+          <span class="side-nav__label">Legal</span>
+          <button class="side-nav__link" id="nav-privacy" onclick="showSection('privacy')">
+            <span class="nav-dot"></span> Privacy Policy</button>
+
+          <button class="side-nav__link" id="nav-terms" onclick="showSection('terms')">
+            <span class="nav-dot"></span> Terms of Service
+          </button>
+          <button class="side-nav__link" id="nav-refund" onclick="showSection('refund')">
+            <span class="nav-dot"></span> Refund Policy
+          </button>
+        </div>
+        <div class="side-nav__divider"></div>
+        <div class="side-nav__section">
+          <span class="side-nav__label">Quick Links</span>
+          <a class="side-nav__link" href="../index.html"><span class="nav-dot"></span> Explore Countries</a>
+          <a class="side-nav__link" href="../about.html"><span class="nav-dot"></span> About Wanderlust</a>
+        </div>
+      </aside>
+
+      <!-- ═══════════════════════════════════════
+           CONTENT SECTIONS
+      ══════════════════════════════════════════ -->
+      <div class="help-content">
+
+        <!-- ── GETTING STARTED ── -->
+        <div class="content-section active" id="sec-getting-started">
+          <div class="sec-heading">
+            <span class="sec-eyebrow">Getting Started</span>
+            <h2 class="sec-title">New to Wanderlust Global?</h2>
+            <p class="sec-sub">Follow these steps to plan and book your first trip in minutes.</p>
+          </div>
+
+          <div class="info-box">
+            <span class="info-box__icon">💡</span>
+            <div class="info-box__text"><strong>Pro tip:</strong> Use our AI chatbot (bottom-right globe button on the home page) to get a personalised itinerary for any country within seconds — just tell it your budget and dates!</div>
+          </div>
+
+          <div class="guide-grid">
+            <div class="guide-card">
+              <div class="guide-num">1</div>
+              <div class="guide-title">Create Your Account</div>
+              <p class="guide-desc">Click "Sign Up" in the top navbar. Enter your name, email and password. Verify your email within 24 hours to unlock all features.</p>
+            </div>
+            <div class="guide-card">
+              <div class="guide-num">2</div>
+              <div class="guide-title">Search a Destination</div>
+              <p class="guide-desc">Use the hero search bar on the home page or browse by continent using the filter bar. Type any country, city or region.</p>
+            </div>
+            <div class="guide-card">
+              <div class="guide-num">3</div>
+              <div class="guide-title">Use the AI Planner</div>
+              <p class="guide-desc">Open the AI chatbot and type your trip preferences — e.g. "7 days in Japan under $1,500." It will generate a full day-by-day itinerary.</p>
+            </div>
+            <div class="guide-card">
+              <div class="guide-num">4</div>
+              <div class="guide-title">Book Your Trip</div>
+              <p class="guide-desc">Click "Book This Trip" on any destination card. Fill in your details, pick travel dates on the calendar, and confirm your booking securely.</p>
+            </div>
+            <div class="guide-card">
+              <div class="guide-num">5</div>
+              <div class="guide-title">Check Visa Requirements</div>
+              <p class="guide-desc">Each country card shows visa type (Free, eVisa, Visa on Arrival, etc.). Ask the AI chatbot for specific visa guidance for your passport.</p>
+            </div>
+            <div class="guide-card">
+              <div class="guide-num">6</div>
+              <div class="guide-title">Manage Your Bookings</div>
+              <p class="guide-desc">Log in and go to "My Trips" in the navbar to view, modify or cancel any booking. Confirmation emails are sent instantly after booking.</p>
+            </div>
+          </div>
+
+          <div class="info-box" style="background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.2)">
+            <span class="info-box__icon">✅</span>
+            <div class="info-box__text"><strong>Need more help?</strong> Browse our <a onclick="showSection('faq')" style="color:var(--clr-accent);cursor:pointer;font-weight:600">FAQs</a> or <a onclick="showSection('contact')" style="color:var(--clr-accent);cursor:pointer;font-weight:600">contact our support team</a> — we reply within 2 hours on weekdays.</div>
+          </div>
+        </div>
+
+        <!-- ── FAQs ── -->
+        <div class="content-section" id="sec-faq">
+          <div class="sec-heading">
+            <span class="sec-eyebrow">Frequently Asked Questions</span>
+            <h2 class="sec-title">Common Questions</h2>
+            <p class="sec-sub">Can't find what you're looking for? <a onclick="showSection('contact')" style="color:var(--clr-accent);cursor:pointer;font-weight:600">Contact our team →</a></p>
+          </div>
+
+          <!-- Bookings & Payments -->
+          <div class="faq-group">
+            <div class="faq-group-title">✈ Bookings & Payments</div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                How do I book a trip on Wanderlust Global?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Browse destinations on our home page, click <strong>"Book This Trip"</strong> on any country card, fill in your personal details, select your travel dates using the calendar, choose number of travellers and trip style, then confirm. You'll receive a booking confirmation email instantly.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                What payment methods are accepted?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>We accept all major payment methods including:</p><ul><li>Credit & Debit cards (Visa, Mastercard, Amex)</li><li>UPI (Google Pay, PhonePe, Paytm)</li><li>Net Banking</li><li>Razorpay (India) and Stripe (International)</li><li>EMI options for bookings above ₹10,000</li></ul></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Is my payment information secure?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Yes, absolutely. All payments are processed through <strong>256-bit SSL encrypted</strong> connections. We never store your card details on our servers. Our payment partners (Razorpay & Stripe) are PCI-DSS Level 1 certified — the highest level of payment security.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Can I modify my booking after confirming?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Yes! Log in to your account and go to <strong>"My Trips"</strong> in the navbar. You can modify dates, number of travellers and trip style up to <strong>48 hours before</strong> your trip start date. Changes may be subject to availability and price differences.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Are the prices shown per person or total?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>All prices displayed on destination cards are <strong>per person</strong> (starting from price). The full total — including all travellers and applicable taxes — is shown in the booking modal's price estimate section before you confirm payment. No hidden fees.</p></div>
+            </div>
+          </div>
+
+          <!-- AI Trip Planner -->
+          <div class="faq-group">
+            <div class="faq-group-title">🤖 AI Trip Planner</div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                How does the AI trip planner work?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Our AI chatbot (the globe 🌍 button, bottom-right) is powered by a large language model trained on travel data for all 195 countries. Simply type your query — like <em>"Plan 10 days in Thailand for ₹50,000"</em> — and it generates a personalised day-by-day itinerary, budget breakdown, hotel suggestions and tips.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Is the AI trip planner free to use?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Yes — the AI chatbot is completely <strong>free for all users</strong>, including without an account. Registered users get additional features like saving AI-generated itineraries to their profile and exporting them as PDFs.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Can the AI help with visa information?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Yes! Ask the AI "Visa-free countries for Indian passport" or "Do I need a visa for Japan from UAE?" and it will provide up-to-date visa guidance. However, we always recommend verifying critical visa information at the <strong>official embassy website</strong> before booking, as policies can change.</p></div>
+            </div>
+          </div>
+
+          <!-- Cancellations & Refunds -->
+          <div class="faq-group">
+            <div class="faq-group-title">💰 Cancellations & Refunds</div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                What is the cancellation policy?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Our standard cancellation policy:</p><ul><li><strong>30+ days before trip:</strong> 100% refund</li><li><strong>14-29 days before trip:</strong> 75% refund</li><li><strong>7-13 days before trip:</strong> 50% refund</li><li><strong>Under 7 days:</strong> Non-refundable (travel credit offered)</li></ul><p style="margin-top:.75rem">Some partner-specific bookings may have different policies — always check the individual booking terms.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                How long do refunds take?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Approved refunds are processed within <strong>5-7 business days</strong> to your original payment method. UPI refunds typically arrive within 1-2 days. Credit card refunds may take up to 10 business days depending on your bank. You'll receive an email confirmation once the refund is initiated.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                What if the trip is cancelled by Wanderlust?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>If we cancel your booking for any reason (partner unavailability, natural disaster, etc.), you will receive a <strong>100% full refund</strong> within 3 business days, plus a 10% discount voucher for your next booking as an apology. You may also opt for travel credit instead.</p></div>
+            </div>
+          </div>
+
+          <!-- Account & Technical -->
+          <div class="faq-group">
+            <div class="faq-group-title">👤 Account & Technical</div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                How do I reset my password?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Click <strong>"Login"</strong> in the navbar, then select <em>"Forgot Password?"</em> on the login modal. Enter your registered email address and we'll send a password reset link within 2 minutes. The link expires after 1 hour for security.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                Can I use Wanderlust on my phone?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>Yes! Wanderlust Global is fully responsive and works on all devices — mobiles, tablets and desktops. Our mobile web experience is optimised for touch. A dedicated iOS and Android app is currently in development and will be available in late 2026.</p></div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                How do I delete my account?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-a"><p>To delete your account, go to <strong>Profile Settings → Account → Delete Account</strong>. All your personal data will be permanently erased within 30 days in accordance with GDPR and India's DPDP Act. Any pending bookings must be cancelled first. This action cannot be undone.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTACT SUPPORT ── -->
+        <div class="content-section" id="sec-contact">
+          <div class="sec-heading">
+            <span class="sec-eyebrow">Contact Support</span>
+            <h2 class="sec-title">We're Here to Help</h2>
+            <p class="sec-sub">Our travel support team is available 7 days a week. Choose the fastest way to reach us.</p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-icon">💬</div>
+              <div class="contact-title">Live Chat</div>
+              <p class="contact-desc">Chat with our AI assistant instantly, or escalate to a human agent within minutes.</p>
+              <div class="contact-detail">Available 24/7</div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">📧</div>
+              <div class="contact-title">Email Support</div>
+              <p class="contact-desc">Send us a detailed message and our team will get back to you promptly.</p>
+              <div class="contact-detail">wanderlust@travel.com</div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">📞</div>
+              <div class="contact-title">Phone Support</div>
+              <p class="contact-desc">Speak directly with a travel expert for urgent booking issues.</p>
+              <div class="contact-detail">Mon-Fri, 9AM-6PM IST</div>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <div class="form-card__title">Send Us a Message</div>
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="submitForm(event);">
+
+              <div class="fg-row">
+                <div class="fg">
+                   <input type="hidden" name="access_key" value="4bda825d-41cd-4bea-be9d-345226f6957c">
+                  <label>Your Name</label>
+                  <input type="text" name="name" placeholder="Full name" required/>
+                </div>
+                <div class="fg">
+                  <label>Email Address</label>
+                  <input type="email" name="email" placeholder="you@email.com" required/>
+                </div>
+              </div>
+              <div class="fg">
+                <label>Topic</label>
+                <select name="subject" required>
+                  <option value="">Select a topic…</option>
+                  <option>Booking & Payments</option>
+                  <option>Cancellation & Refunds</option>
+                  <option>AI Trip Planner</option>
+                  <option>Account & Login</option>
+                  <option>Visa Information</option>
+                  <option>Technical Issue</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label>Booking ID (optional)</label>
+                <input type="text" name="booking_id" placeholder="e.g. WL-2026-00123"/>
+              </div>
+              <div class="fg">
+                <label>Your Message</label>
+                <textarea rows="4" name="message" placeholder="Describe your issue in detail — the more info you give, the faster we can help…" required></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary" style="width:100%;padding:13px;font-size:.95rem;border-radius:var(--r-md)">
+                Send Message →
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- ── PRIVACY POLICY ── -->
+        <div class="content-section" id="sec-privacy">
+          <div class="sec-heading">
+            <span class="sec-eyebrow">Legal</span>
+            <h2 class="sec-title">Privacy Policy</h2>
+            <p class="sec-sub">We value your privacy. This policy explains what data we collect, why we collect it and how we protect it.</p>
+          </div>
+
+          <div class="policy-meta">
+            <div class="policy-meta-item">📅 <strong>Effective:</strong> 1 April 2026</div>
+            <div class="policy-meta-item">🔄 <strong>Last Updated:</strong> 21 April 2026</div>
+            <div class="policy-meta-item">📍 <strong>Applies to:</strong> wanderlust-global.com</div>
+          </div>
+
+          <div class="policy-toc">
+            <div class="policy-toc__title">Table of Contents</div>
+            <ul class="policy-toc__list">
+              <li><a href="#pp1">1. Information We Collect</a></li>
+              <li><a href="#pp2">2. How We Use Your Information</a></li>
+              <li><a href="#pp3">3. How We Share Your Information</a></li>
+              <li><a href="#pp4">4. Cookies & Tracking</a></li>
+              <li><a href="#pp5">5. Data Security</a></li>
+              <li><a href="#pp6">6. Your Rights</a></li>
+              <li><a href="#pp7">7. Children's Privacy</a></li>
+              <li><a href="#pp8">8. Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div class="policy-block" id="pp1">
+            <h3 class="policy-block__heading"><span class="ph-num">1</span>Information We Collect</h3>
+            <p>When you use Wanderlust Global, we collect information to provide and improve our services. The types of information we collect include:</p>
+            <ul>
+              <li><strong>Account Information:</strong> Name, email address and password when you register.</li>
+              <li><strong>Booking Details:</strong> Travel dates, destination, number of travellers, payment information and special requests.</li>
+              <li><strong>Profile Data:</strong> Optional information such as profile photo, travel preferences and saved trips.</li>
+              <li><strong>Usage Data:</strong> Pages visited, search queries, time spent on pages, clicks and interactions.</li>
+              <li><strong>Device Information:</strong> IP address, browser type, operating system and device identifiers.</li>
+              <li><strong>AI Chat Logs:</strong> Conversations with our AI trip planner to improve recommendations (anonymised after 90 days).</li>
+            </ul>
+          </div>
+
+          <div class="policy-block" id="pp2">
+            <h3 class="policy-block__heading"><span class="ph-num">2</span>How We Use Your Information</h3>
+            <p>We use the information we collect for the following purposes:</p>
+            <ul>
+              <li>To process your bookings, payments and confirmations</li>
+              <li>To personalise AI trip recommendations based on your travel history and preferences</li>
+              <li>To send booking confirmations, receipts and important travel updates</li>
+              <li>To improve our platform through analytics and user feedback</li>
+              <li>To send promotional emails (only with your explicit consent — you can unsubscribe anytime)</li>
+              <li>To prevent fraud and ensure platform security</li>
+              <li>To comply with applicable laws and legal obligations</li>
+            </ul>
+            <div class="highlight-box"><p>We <strong>never sell</strong> your personal data to third parties for their own marketing purposes. Your data is used solely to improve your experience on Wanderlust Global.</p></div>
+          </div>
+
+          <div class="policy-block" id="pp3">
+            <h3 class="policy-block__heading"><span class="ph-num">3</span>How We Share Your Information</h3>
+            <p>We share your information only in limited circumstances:</p>
+            <ul>
+              <li><strong>Booking Partners:</strong> Hotels, tour operators and travel service providers receive only the information necessary to fulfil your booking (name, dates, traveller count).</li>
+              <li><strong>Payment Processors:</strong> Razorpay and Stripe receive payment details to process transactions. They operate under their own privacy policies.</li>
+              <li><strong>Service Providers:</strong> Cloud hosting (AWS), email delivery (SendGrid) and analytics (Google Analytics) — all bound by data processing agreements.</li>
+              <li><strong>Legal Requirements:</strong> We may disclose information if required by law, court order or government authority.</li>
+            </ul>
+            <p>We require all third parties to respect the security of your data and to treat it in accordance with applicable law.</p>
+          </div>
+
+          <div class="policy-block" id="pp4">
+            <h3 class="policy-block__heading"><span class="ph-num">4</span>Cookies & Tracking</h3>
+            <p>We use cookies and similar tracking technologies to enhance your experience:</p>
+            <ul>
+              <li><strong>Essential Cookies:</strong> Required for login sessions and booking flow. Cannot be disabled.</li>
+              <li><strong>Analytics Cookies:</strong> Help us understand how users interact with our site (Google Analytics). You can opt out.</li>
+              <li><strong>Preference Cookies:</strong> Remember your theme (dark/light mode) and language settings.</li>
+              <li><strong>Marketing Cookies:</strong> Used only with your consent to show relevant travel ads on other platforms.</li>
+            </ul>
+            <p>You can manage cookie preferences in your browser settings at any time. Disabling essential cookies may affect your ability to use certain features.</p>
+          </div>
+
+          <div class="policy-block" id="pp5">
+            <h3 class="policy-block__heading"><span class="ph-num">5</span>Data Security</h3>
+            <p>We take the security of your personal data seriously and implement industry-standard measures:</p>
+            <ul>
+              <li>All data transmitted between your browser and our servers is encrypted using <strong>TLS 1.3</strong></li>
+              <li>Passwords are hashed using <strong>bcrypt</strong> — we never store plaintext passwords</li>
+              <li>Payment data is processed by <strong>PCI-DSS Level 1 certified</strong> payment partners</li>
+              <li>Regular security audits and penetration testing by third-party firms</li>
+              <li>Employee access to personal data is strictly limited on a need-to-know basis</li>
+            </ul>
+            <div class="highlight-box"><p>In the event of a data breach that affects your personal information, we will notify you within <strong>72 hours</strong> in accordance with applicable data protection regulations.</p></div>
+          </div>
+
+          <div class="policy-block" id="pp6">
+            <h3 class="policy-block__heading"><span class="ph-num">6</span>Your Rights</h3>
+            <p>Depending on your location, you have the following rights regarding your personal data:</p>
+            <ul>
+              <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+              <li><strong>Correction:</strong> Ask us to correct inaccurate or incomplete data</li>
+              <li><strong>Deletion:</strong> Request deletion of your personal data ("right to be forgotten")</li>
+              <li><strong>Portability:</strong> Receive your data in a structured, machine-readable format</li>
+              <li><strong>Objection:</strong> Object to processing of your data for direct marketing</li>
+              <li><strong>Restriction:</strong> Request that we limit how we process your data in certain circumstances</li>
+            </ul>
+            <p>To exercise any of these rights, email us at <a href="mailto:privacy@wanderlust-global.com">privacy@wanderlust-global.com</a> or use the <a onclick="showSection('contact')" style="color:var(--clr-accent);cursor:pointer;font-weight:600">Contact Support form</a>. We will respond within 30 days.</p>
+          </div>
+
+          <div class="policy-block" id="pp7">
+            <h3 class="policy-block__heading"><span class="ph-num">7</span>Children's Privacy</h3>
+            <p>Wanderlust Global is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately at <a href="mailto:privacy@wanderlust-global.com">privacy@wanderlust-global.com</a> and we will delete such information from our systems.</p>
+          </div>
+
+          <div class="policy-block" id="pp8">
+            <h3 class="policy-block__heading"><span class="ph-num">8</span>Contact Us</h3>
+            <p>If you have any questions, concerns or complaints about this Privacy Policy or our data practices, please contact our Data Protection Officer:</p>
+            <ul>
+              <li><strong>Email:</strong> <a href="mailto:privacy@wanderlust-global.com">privacy@wanderlust-global.com</a></li>
+              <li><strong>Email:</strong> <a href="mailto:wanderlust@travel.com">wanderlust@travel.com</a></li>
+              <li><strong>Address:</strong> Wanderlust Global Pvt. Ltd., 42 Tech Park, Mumbai 400051, India</li>
+              <li><strong>Response time:</strong> Within 30 days of receiving your request</li>
+            </ul>
+            <p>We may update this Privacy Policy from time to time. When we make significant changes, we will notify you by email and update the "Last Updated" date at the top of this page.</p>
+          </div>
+        </div>
+
+        <!-- ── TERMS OF SERVICE ── -->
+        <div class="content-section" id="sec-terms">
+          <div class="sec-heading">
+            <span class="sec-eyebrow">Legal</span>
+            <h2 class="sec-title">Terms of Service</h2>
+            <p class="sec-sub">By using Wanderlust Global you agree to these terms. Please read them carefully.</p>
+          </div>
+          <div class="policy-meta">
+            <div class="policy-meta-item">📅 <strong>Effective:</strong> 1 April 2026</div>
+            <div class="policy-meta-item">🔄 <strong>Last Updated:</strong> 21 April 2026</div>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">1</span>Acceptance of Terms</h3>
+            <p>By accessing or using Wanderlust Global ("the Platform"), you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree with any part of these terms, you may not use our services.</p>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">2</span>Use of the Platform</h3>
+            <p>You agree to use Wanderlust Global only for lawful purposes and in accordance with these Terms. You must not use the platform to:</p>
+            <ul>
+              <li>Make fraudulent bookings or provide false information</li>
+              <li>Scrape, copy or reproduce any content without written permission</li>
+              <li>Attempt to gain unauthorised access to any part of the platform</li>
+              <li>Transmit spam, malware or harmful code</li>
+              <li>Violate any applicable local, national or international law or regulation</li>
+            </ul>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">3</span>Bookings & Responsibility</h3>
+            <p>Wanderlust Global acts as an intermediary platform connecting travellers with travel service providers. While we verify all listed partners, we are not responsible for the actions, omissions or quality of third-party travel service providers. We strongly recommend purchasing comprehensive travel insurance before any international travel.</p>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">4</span>Limitation of Liability</h3>
+            <p>To the maximum extent permitted by applicable law, Wanderlust Global shall not be liable for any indirect, incidental, special or consequential damages arising out of your use of the platform or any bookings made through it. Our total liability shall not exceed the amount paid for the specific booking in question.</p>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">5</span>Changes to Terms</h3>
+            <p>We reserve the right to modify these Terms at any time. Continued use of the Platform after changes constitutes acceptance of the revised Terms. We will notify registered users of significant changes via email.</p>
+            <p>For questions about these Terms, contact us at <a href="mailto:wanderlust@travel.com">wanderlust@travel.com</a>.</p>
+          </div>
+        </div>
+
+        <!-- ── REFUND POLICY ── -->
+        <div class="content-section" id="sec-refund">
+          <div class="sec-heading">
+            <span class="sec-eyebrow">Legal</span>
+            <h2 class="sec-title">Refund Policy</h2>
+            <p class="sec-sub">Clear and fair — we believe you should know exactly what to expect before you book.</p>
+          </div>
+          <div class="policy-meta">
+            <div class="policy-meta-item">📅 <strong>Effective:</strong> 1 April 2026</div>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">1</span>Standard Cancellation Tiers</h3>
+            <p>Our refund amount depends on how far in advance you cancel:</p>
+            <ul>
+              <li><strong>30+ days before trip start:</strong> 100% full refund to original payment method</li>
+              <li><strong>14-29 days before trip:</strong> 75% refund</li>
+              <li><strong>7-13 days before trip:</strong> 50% refund</li>
+              <li><strong>2-6 days before trip:</strong> 25% refund or travel credit</li>
+              <li><strong>Under 48 hours / no-show:</strong> Non-refundable. Travel credit may be offered at our discretion.</li>
+            </ul>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">2</span>Refund Processing Time</h3>
+            <p>Once approved, refunds are processed as follows:</p>
+            <ul>
+              <li><strong>UPI / Net Banking:</strong> 1-3 business days</li>
+              <li><strong>Credit / Debit Card:</strong> 5-10 business days (depends on issuing bank)</li>
+              <li><strong>Wanderlust Travel Credit:</strong> Instant — credited to your account immediately</li>
+            </ul>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">3</span>Platform-Initiated Cancellations</h3>
+            <p>If Wanderlust Global cancels your booking for any reason (including partner unavailability, natural disasters, or force majeure events), you will receive a <strong>100% full refund</strong> within 3 business days, plus a <strong>10% discount voucher</strong> for your next booking.</p>
+          </div>
+          <div class="policy-block">
+            <h3 class="policy-block__heading"><span class="ph-num">4</span>How to Request a Refund</h3>
+            <p>To cancel a booking and request a refund:</p>
+            <ol>
+              <li>Log in to your Wanderlust account</li>
+              <li>Go to "My Trips" in the navigation bar</li>
+              <li>Select the booking you wish to cancel</li>
+              <li>Click "Cancel Booking" and confirm your reason</li>
+              <li>You'll receive a refund confirmation email within 1 hour</li>
+            </ol>
+            <p style="margin-top:.875rem">Alternatively, email <a href="mailto:wanderlust@travel.com">wanderlust@travel.com</a> or use the <a onclick="showSection('contact')" style="color:var(--clr-accent);cursor:pointer;font-weight:600">Contact Support form</a>.</p>
+          </div>
+        </div>
+
+      </div><!-- end help-content -->
+    </div><!-- end help-layout -->
+  </div><!-- end container -->
+</main>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER — identical to main site
+═══════════════════════════════════════════════ -->
+<footer class="footer" id="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">Wander<em>lust</em> Global</div>
+        <p class="footer__desc">
+          Your AI-powered global travel companion. Explore 195 countries,
+          plan smart itineraries and book your dream trip.
+        </p>
+      </div>
+      <nav>
+        <h5 class="footer__col-title">Popular Destinations</h5>
+        <ul class="footer__col-links">
+          <li><a href="../index.html?book=Japan">Tokyo, Japan</a></li>
+          <li><a href="../index.html?book=France">Paris, France</a></li>
+          <li><a href="../index.html?book=Indonesia (Bali)">Bali, Indonesia</a></li>
+          <li><a href="../index.html?book=Maldives">Maldives</a></li>
+          <li><a href="../index.html?book=UAE">Dubai, UAE</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <h5 class="footer__col-title">Company</h5>
+        <ul class="footer__col-links">
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#all-destinations">Destinations</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <h5 class="footer__col-title">Support</h5>
+        <ul class="footer__col-links">
+          <li><a href="help-center.html">Help Center</a></li>
+          <li><a href="help-center.html" onclick="localStorage.setItem('hc-goto','privacy')">Privacy Policy</a></li>
+          <li><a href="mailto:wanderlust@travel.com">wanderlust@travel.com</a></li>
+          <li><a>24/7 Support or "Mon-Fri, 9AM-6PM"</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Wanderlust Global. All rights reserved.</span>
+      <span>Made with ❤️ for explorers everywhere</span>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span id="toast-icon"></span>
+  <span id="toast-msg"></span>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════ -->
+<script src="../js/help-center.js"></script>
+<script type="module" src="../auth/firebaseauth.js"></script>
+</body>
+</html>
+

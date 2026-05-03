@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="About Wanderlust Global – Our story, mission, team and values. AI-powered travel for every explorer on Earth."/>
+  <title>About Us – Wanderlust Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="css/about.css" />
+<link rel = "icon" type = "image/png" href = "img/favicon.ico">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════ -->
+<nav class="navbar">
+  <div class="nav-logo">
+    Wander<em>lust</em>
+    <span class="nav-logo-tag">Global</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Explore</a></li>
+    <li><a href="about.html" class="active">About Us</a></li>
+    <li><a href="auth.html?mode=login">My Trips</a></li>
+    
+  </ul>
+  <div class="nav-actions">
+    <button class="btn btn-ghost" style="padding:7px 16px;font-size:.8rem" onclick="toggleTheme()">
+      <span id="theme-icon">☀️</span><span id="theme-label">Light</span>
+    </button>
+    <a href="auth.html?mode=login" class="btn btn-outline" id="nav-login-btn" style="padding:7px 16px;font-size:.875rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Login</a>
+    <a href="auth.html?mode=register" class="btn btn-primary" id="nav-signup-btn" style="padding:8px 18px;font-size:.875rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Sign Up</a>
+    <a href="profile.html" class="btn btn-outline" id="nav-profile-btn" style="display: none; padding:7px 16px;font-size:.875rem; text-decoration:none; align-items:center; justify-content:center;">Profile</a>
+    <button class="btn btn-outline" id="nav-logout-btn" style="display: none; padding:7px 16px;font-size:.875rem; align-items:center; justify-content:center;">Logout</button>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="index.html">Explore</a>
+  <a href="about.html">About Us</a>
+  <a href="auth.html?mode=login">My Trips</a>
+  
+  <a href="profile.html" id="mobile-profile-link" style="display:none;">User Profile</a>
+  <a href="auth.html?mode=register" class="btn btn-primary" id="mobile-signup-btn" style="margin-top:.5rem;border-radius:10px;padding:11px; text-decoration:none; text-align:center; display:block;">Sign Up Free</a>
+  <button class="btn btn-primary" id="mobile-logout-btn" style="display:none;margin-top:.5rem;border-radius:10px;padding:11px; text-align:center;">Logout</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════════════ -->
+<header class="page-hero">
+  <div class="page-hero__bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="stars-bg" id="stars"></div>
+  <div class="page-hero__inner container">
+    <div class="page-hero__eyebrow">✈ Our Story · Est. 2026</div>
+    <h1 class="page-hero__title">
+      We Live to Help<br/>
+      <em class="line-acc">You Explore</em>
+    </h1>
+    <p class="page-hero__sub">
+      Born from a one-way ticket and a worn-out passport, Wanderlust Global is a team
+      of explorers, engineers and dreamers on a mission — make travel accessible,
+      intelligent and unforgettable for every human on Earth.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="index.html" class="btn btn-primary">Explore Destinations ✈</a>
+      
+    </div>
+    <div class="page-hero__stats">
+      <div><span class="phs-val">195</span><span class="phs-lbl">Countries</span></div>
+      <div><span class="phs-val">50K+</span><span class="phs-lbl">Travellers</span></div>
+      <div><span class="phs-val">4.9★</span><span class="phs-lbl">Avg Rating</span></div>
+      <div><span class="phs-val">2026</span><span class="phs-lbl">Founded</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     OUR STORY
+═══════════════════════════════════════════════════ -->
+<section class="story">
+  <div class="container">
+    <div class="story__grid">
+
+      <!-- Image side -->
+      <div class="story__img-wrap reveal">
+        <div class="story__float-card">
+          <div class="story__float-icon">🌍</div>
+          <div class="story__float-title">AI Trip Planner</div>
+          <div class="story__float-sub">195 Countries · Live</div>
+        </div>
+
+        <img class="story__img" src="img/story.jpg" loading="lazy"/>
+        <div class="story__img-badge">
+          <span class="story__img-badge-val">1M+</span>
+          <div class="story__img-badge-lbl">Trips Planned with AI</div>
+        </div>
+      </div>
+
+      <!-- Text side -->
+      <div class="story__body reveal reveal-delay-2">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">From a Backpack to<br/>a Global Platform</h2>
+        
+        <p>Today, Wanderlust Global helps over plan trips to all 195 countries — with personalised budgets, real-time visa info, AI itineraries and the warmth of people who've actually been there.</p>
+        <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap">
+          <span class="tag tag-acc">🚀 Launched 2026</span>
+          <span class="tag tag-acc">🌍 195 Countries</span>
+          <span class="tag tag-acc">🤖 AI-Powered</span>
+          <span class="tag tag-acc">🇮🇳 Made in India</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     MISSION & VALUES
+═══════════════════════════════════════════════════ -->
+<section class="mission">
+  <div class="container">
+    <div class="mission__inner reveal">
+      <span class="section-label">Mission & Values</span>
+      <h2 class="section-title">Why We Do What We Do</h2>
+      <p class="section-sub">We believe travel is the greatest teacher. Every passport stamp is a lesson in empathy, every missed bus an adventure and every foreign meal a story worth telling.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon">🌍</div>
+        <div class="value-title">Travel for Everyone</div>
+        <p class="value-desc">Whether you have $300 or $30,000, everyone deserves to see the world. We tailor experiences for backpackers and luxury seekers alike — no traveller left behind.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon">🤖</div>
+        <div class="value-title">AI-First Planning</div>
+        <p class="value-desc">Our AI doesn't just suggest places — it understands your budget, travel style, visa situation and preferences to build itineraries that genuinely fit your life.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-icon">🔒</div>
+        <div class="value-title">Trust & Transparency</div>
+        <p class="value-desc">No hidden fees. No fake reviews. Every price shown is real, every destination reviewed by real travellers, and every booking is 100% secure.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon">🌱</div>
+        <div class="value-title">Responsible Travel</div>
+        <p class="value-desc">We champion eco-friendly stays, local guides and cultural sensitivity. 1% of every booking goes to our Travel Earth Fund for sustainable tourism projects.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon">⚡</div>
+        <div class="value-title">Relentless Innovation</div>
+        <p class="value-desc">Travel is changing fast. We ship new features every two weeks — from real-time visa trackers to group trip planners — always listening to our traveller community.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-icon">❤️</div>
+        <div class="value-title">Community First</div>
+        <p class="value-desc">Our 50K+ traveller community shares tips, travel hacks and honest reviews. Real people, real trips — not influencers on sponsored stays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     IMPACT NUMBERS
+═══════════════════════════════════════════════════ -->
+<section class="impact">
+  <div class="container">
+    <div class="impact__header reveal">
+      <span class="section-label">Our Impact</span>
+      <h2 class="section-title">Numbers That Matter</h2>
+      <p class="section-sub" style="max-width:520px;margin:0 auto">Every booking, every AI-planned itinerary and every traveller milestone drives us forward.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal reveal-delay-1">
+        <div class="impact-icon">✈️</div>
+        <span class="impact-val" data-count="195">0</span>
+        <div class="impact-lbl">Countries Listed</div>
+        <p class="impact-desc">Every nation on Earth — from Afghanistan to Zimbabwe</p>
+      </div>
+      <div class="impact-card reveal reveal-delay-2">
+        <div class="impact-icon">👥</div>
+        <span class="impact-val" data-count="50000">0</span>
+        <div class="impact-lbl">Active Travellers</div>
+        <p class="impact-desc">Monthly users trusting us with their adventures</p>
+      </div>
+      <div class="impact-card reveal reveal-delay-3">
+        <div class="impact-icon">🤖</div>
+        <span class="impact-val" data-count="3000000">0</span>
+        <div class="impact-lbl">AI Trips Planned</div>
+        <p class="impact-desc">Personalised itineraries generated since launch</p>
+      </div>
+      <div class="impact-card reveal reveal-delay-4">
+        <div class="impact-icon">⭐</div>
+        <span class="impact-val" data-count="49" data-decimal="true">0</span>
+        <div class="impact-lbl">Average Rating</div>
+        <p class="impact-desc">Out of 5.0 across 12,000+ verified reviews</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     MILESTONES TIMELINE
+═══════════════════════════════════════════════════ -->
+<section class="milestones">
+  <div class="container">
+    <div class="milestones__header reveal">
+      <span class="section-label">Our Journey</span>
+      <h2 class="section-title">From Idea to Global Platform</h2>
+      <p class="section-sub" style="max-width:520px;margin:.75rem auto 0">
+        Every great journey starts with a single step.
+      </p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="tl-icon">✈️</div>
+          <div class="tl-title">The Spark</div>
+          <p class="tl-desc">Harshit Soni quits his job and backpacks 47 countries. Realises that great travel planning is a superpower not everyone has.</p>
+        </div>
+        <div class="timeline-year">
+          <div><div class="tl-year">The</div></div>
+        </div>
+        <div class="timeline-content" style="opacity:0;pointer-events:none"></div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="timeline-content" style="opacity:0;pointer-events:none"></div>
+        <div class="timeline-year">
+          <div><div class="tl-year">Idea</div></div>
+        </div>
+        <div class="timeline-content">
+          <div class="tl-icon">💡</div>
+          <div class="tl-title">Wanderlust Founded</div>
+          <p class="tl-desc">Team of 3 founded in Uttar Pradesh. MVP launched — 10 countries, basic AI chatbot and a booking form.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="timeline-content">
+          <div class="tl-icon">🚀</div>
+          <div class="tl-title">100 Countries Milestone</div>
+          <p class="tl-desc">Expanded to 100 destinations. First 5,000 users. Featured in TechCrunch India and raised $1M seed round.</p>
+        </div>
+        <div class="timeline-year">
+          <div><div class="tl-year">Growth</div></div>
+        </div>
+        <div class="timeline-content" style="opacity:0;pointer-events:none"></div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="timeline-content" style="opacity:0;pointer-events:none"></div>
+        <div class="timeline-year">
+          <div><div class="tl-year">AI</div></div>
+        </div>
+        <div class="timeline-content">
+          <div class="tl-icon">🤖</div>
+          <div class="tl-title">AI Trip Planner Launched</div>
+          <p class="tl-desc">Launched full AI trip planning — budget breakdowns, visa tracking, real-time itineraries. 1 million trips planned.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-4">
+        <div class="timeline-content">
+          <div class="tl-icon">🌍</div>
+          <div class="tl-title">All 195 Countries</div>
+          <p class="tl-desc">Became the first travel platform to list every country on Earth with real imagery, visa data and AI itineraries.</p>
+        </div>
+        <div class="timeline-year">
+          <div><div class="tl-year">Now</div><div class="tl-num">2026</div></div>
+        </div>
+        <div class="timeline-content" style="opacity:0;pointer-events:none"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     PRESS
+═══════════════════════════════════════════════════ -->
+<section class="press">
+  <div class="container">
+    <div class="press__label">As Featured In</div>
+    <div class="press-logos">
+      <span class="press-logo">TechCrunch</span>
+      <span class="press-logo">Forbes India</span>
+      <span class="press-logo">The Hindu</span>
+      <span class="press-logo">Condé Nast Traveller</span>
+      <span class="press-logo">Lonely Planet</span>
+      <span class="press-logo">Wired</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials__header reveal">
+      <span class="section-label">Traveller Stories</span>
+      <h2 class="section-title">Words from the Road</h2>
+      <p class="section-sub" style="max-width:500px;margin:.75rem auto 0">Real trips. Real people. Real adventures planned with Wanderlust Global.</p>
+    </div>
+    <div class="testi-grid">
+
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The AI planned my entire 14-day Japan trip in under 3 minutes. Every restaurant, every train, every budget line — perfect. I just showed up."</p>
+        <div class="testi-author">
+          <div class="testi-avatar-placeholder" style="background:rgba(255,107,53,.15);color:var(--acc)">SK</div>
+          <div>
+            <div class="testi-name">Sneha Kapoor</div>
+            <div class="testi-loc">📍 Delhi, India · Visited Japan</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Solo travel felt scary until Wanderlust. The visa guide, the safety tips, the budget breakdown — I felt like a professional traveller on my very first solo trip."</p>
+        <div class="testi-author">
+          <div class="testi-avatar-placeholder" style="background:rgba(124,58,237,.15);color:#a78bfa">AO</div>
+          <div>
+            <div class="testi-name">Amara Osei</div>
+            <div class="testi-loc">📍 Accra, Ghana · Visited Portugal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Planned our honeymoon in Maldives for a fraction of what travel agents quoted. The AI even found a private overwater villa within our budget. Absolutely magical."</p>
+        <div class="testi-author">
+          <div class="testi-avatar-placeholder" style="background:rgba(251,191,36,.12);color:#fbbf24">RV</div>
+          <div>
+            <div class="testi-name">Ravi & Divya</div>
+            <div class="testi-loc">📍 Bangalore, India · Visited Maldives</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     CTA BANNER
+═══════════════════════════════════════════════════ -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <h2 class="cta-title">Ready to Start Your<br/>Next Adventure?</h2>
+      <p class="cta-sub">Join 50,000+ travellers using AI to explore every corner of the Earth — smarter, cheaper and with more confidence.</p>
+      <div class="cta-btns">
+        <a href="index.html" class="btn btn-primary" style="padding:13px 28px;font-size:1rem">Explore 195 Countries ✈</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer class="footer" id="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer-logo">Wander<em>lust</em> Global</div>
+        <p class="footer-desc">
+          Your AI-powered global travel companion. Explore 195 countries,
+          plan smart itineraries and book your dream trip.
+        </p>
+      </div>
+      <nav>
+        <h5 class="footer-col-title">Popular Destinations</h5>
+        <ul class="footer-col-links">
+          <li><a href="index.html?book=Japan">Tokyo, Japan</a></li>
+          <li><a href="index.html?book=France">Paris, France</a></li>
+          <li><a href="index.html?book=Indonesia (Bali)">Bali, Indonesia</a></li>
+          <li><a href="index.html?book=Maldives">Maldives</a></li>
+          <li><a href="index.html?book=UAE">Dubai, UAE</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <h5 class="footer-col-title">Company</h5>
+        <ul class="footer-col-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#all-destinations">Destinations</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <h5 class="footer-col-title">Support</h5>
+        <ul class="footer-col-links">
+          <li><a href="footer/help-center.html">Help Center</a></li>
+          <li><a href="footer/help-center.html" onclick="localStorage.setItem('hc-goto','privacy')">Privacy Policy</a></li>
+          <li><a href="mailto:wanderlust@travel.com">wanderlust@travel.com</a></li>
+          <li><a>24/7 Support or "Mon-Fri, 9AM-6PM"</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Wanderlust Global. All rights reserved.</span>
+      <span>Made with ❤️ for explorers everywhere</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════ -->
+<script src="js/about.js"></script>
+<script type="module" src="auth/firebaseauth.js"></script>
+</body>
+</html>

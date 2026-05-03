@@ -1,0 +1,238 @@
+/* Profile Specific Styles */
+:root {
+  --bg-card: var(--clr-card);
+  --text-base: var(--clr-text-0);
+  --text-mut: var(--clr-text-1);
+  --primary: var(--clr-accent);
+  --border: var(--clr-border);
+  --radius-lg: var(--r-lg);
+  --radius-md: var(--r-md);
+  --t-fast: var(--dur-fast);
+}
+
+.profile-page {
+  padding-top: 100px;
+  min-height: 80vh;
+}
+
+.container--profile {
+  max-width: 900px;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.profile-header__avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+}
+
+.profile-header__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-header__name {
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem;
+  color: var(--text-base);
+  margin: 0;
+}
+
+.profile-header__email {
+  color: var(--text-mut);
+  font-size: 1.1rem;
+}
+
+/* Profile Tabs */
+.profile-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.profile-tabs__btn {
+  background: none;
+  border: none;
+  color: var(--text-mut);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--t-fast);
+  white-space: nowrap;
+}
+
+.profile-tabs__btn:hover {
+  color: var(--text-base);
+}
+
+.profile-tabs__btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Tab Sections */
+.profile-section {
+  display: none;
+  animation: fadeUp 0.3s ease;
+}
+
+.profile-section.active {
+  display: block;
+}
+
+.profile-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-base);
+}
+
+/* Profile Form */
+.profile-form {
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+/* Trip Grid */
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.trip-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform var(--t-fast);
+}
+
+.trip-card:hover {
+  transform: translateY(-4px);
+}
+
+.trip-card__img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.trip-card__body {
+  padding: 1.5rem;
+}
+
+.trip-card__status {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.badge--success {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.trip-card__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-base);
+}
+
+.trip-card__date, .trip-card__price {
+  color: var(--text-mut);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.trip-card__price {
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1.2rem;
+}
+
+.trip-card__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.empty-bookings {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border);
+  color: var(--text-mut);
+}
+
+.empty-bookings a {
+  margin-top: 1rem;
+}
+
+/* Payment Methods */
+.payment-methods {
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.payment-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+}
+
+.payment-card__icon {
+  font-size: 2rem;
+}
+
+.payment-card__details {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.payment-card__type {
+  font-weight: 600;
+  color: var(--text-base);
+  margin-bottom: 0.2rem;
+}
+
+.payment-card__exp {
+  font-size: 0.9rem;
+  color: var(--text-mut);
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}

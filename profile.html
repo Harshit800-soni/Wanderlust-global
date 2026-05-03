@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile - Wanderlust Global</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <link rel="icon" type="image/png" href="img/favicon.ico">
+</head>
+<body>
+
+  <!-- ═════════
+       NAVBAR
+  ══════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__logo">
+      <a href="index.html" style="text-decoration:none; color:inherit;">Wander<em>lust</em></a>
+      <span class="navbar__logo-tag">Global</span>
+    </div>
+
+    <ul class="navbar__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#explore">Explore</a></li>
+      <li><a href="index.html#trips">Trips</a></li>
+      <li><a href="profile.html">Dashboard</a></li>
+      <li><a href="index.html#footer">About</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+      <button class="btn btn--ghost btn--sm" onclick="toggleTheme()">
+        <span id="theme-icon">☀️</span>
+        <span id="theme-label">Light</span>
+      </button>
+      <button class="btn btn--outline btn--sm" id="nav-logout-btn">Logout</button>
+      <button class="navbar__hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+    <a href="index.html#explore" onclick="toggleMobileMenu()">Explore</a>
+    <a href="index.html#trips" onclick="toggleMobileMenu()">Trips</a>
+    <a href="index.html#footer" onclick="toggleMobileMenu()">About</a>
+    <button class="btn btn--primary btn--full" id="mobile-logout-btn">
+      Logout
+    </button>
+  </nav>
+
+  <!-- ══════════════
+       PROFILE MAIN
+  ═══════════════════-->
+  <main class="main profile-page" role="main">
+    <div class="container container--profile">
+      
+      <!-- Profile Header -->
+      <header class="profile-header">
+        <div class="profile-header__avatar">
+          <img src="img/profile.jpg" alt="User Avatar" />
+        </div>
+        <div class="profile-header__info">
+          <h1 class="profile-header__name"></h1>
+          <p class="profile-header__email"></p>
+          
+        </div>
+      </header>
+
+      <!-- Profile Tabs -->
+      <div class="profile-tabs">
+        <button class="profile-tabs__btn active" onclick="switchProfileTab('account', this)">Account Details</button>
+        <button class="profile-tabs__btn" onclick="switchProfileTab('history', this)">Trip History</button>
+        <button class="profile-tabs__btn" onclick="switchProfileTab('payment', this)">Payment Methods</button>
+      </div>
+
+      <!-- Tab Content: Account Details -->
+      <section class="profile-section active" id="tab-account">
+        <h2>Personal Information</h2>
+        <form class="profile-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-group__label">First Name</label>
+              <input type="text" class="form-group__input" id="prof-fname" value="Alex" />
+            </div>
+            <div class="form-group">
+              <label class="form-group__label">Last Name</label>
+              <input type="text" class="form-group__input" id="prof-lname" value="Wanderer" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-group__label">Email Address</label>
+            <input type="email" class="form-group__input" id="prof-email" value="alex@wanderlust.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-group__label">Phone Number</label>
+            <input type="tel" class="form-group__input" id="prof-phone" value="+1 (555) 123-4567" />
+          </div>
+          <div class="form-group">
+            <label class="form-group__label">Address</label>
+            <input type="text" class="form-group__input" id="prof-address" value="123 Explorer Lane, Travel City, TC 90210" />
+          </div>
+          <button type="button" class="btn btn--primary" id="save-profile-btn">Save Changes</button>
+        </form>
+      </section>
+
+      <!-- Tab Content: Trip History -->
+      <section class="profile-section" id="tab-history">
+        <h2>Your Past & Upcoming Journeys</h2>
+        <div class="trip-grid">
+          <!-- Dynamic bookings populated by profile.js -->
+        </div>
+      </section>
+
+      <!-- Tab Content: Payment Methods -->
+      <section class="profile-section" id="tab-payment">
+        <h2>Saved Payment Methods</h2>
+        <div class="payment-methods">
+          <div class="payment-card">
+            <div class="payment-card__icon">💳</div>
+            <div class="payment-card__details">
+              <p class="payment-card__type">Visa ending in 4242</p>
+              <p class="payment-card__exp">Expires 12/28</p>
+            </div>
+            <button class="btn btn--sm btn--ghost">Remove</button>
+          </div>
+          <div class="payment-card">
+            <div class="payment-card__icon">🅿️</div>
+            <div class="payment-card__details">
+              <p class="payment-card__type">PayPal</p>
+              <p class="payment-card__exp">alex@wanderlust.com</p>
+            </div>
+            <button class="btn btn--sm btn--ghost">Remove</button>
+          </div>
+          <button class="btn btn--outline" style="margin-top: 1rem;" onclick="showToast('💳', 'Add payment form opened')">+ Add New Payment Method</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ════════════════════
+       TOAST NOTIFICATION
+  ═══════════════════════ -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span id="toast-icon"></span>
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/profile.js"></script>
+  <script type="module" src="auth/firebaseauth.js"></script>
+</body>
+</html>

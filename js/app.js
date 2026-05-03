@@ -224,7 +224,10 @@ async function submitBooking() {
   const grand   = base + taxes;
 
   try {
-    const response = await fetch('http://localhost:3000/create-order', {
+    const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? 'http://localhost:3000' 
+      : 'https://wanderlust-global-backend.onrender.com';
+    const response = await fetch(`${BACKEND_URL}/create-order`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount: grand })
